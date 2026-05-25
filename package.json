@@ -7,20 +7,27 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/style.css"
+    "tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/style.css",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.19",
+    "jsdom": "^29.1.1",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "tsup": "^8.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.7"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

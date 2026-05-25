@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment, Center, Html } from '@react-three/drei';
-import { cn } from '../utils/cn';
+import { cn } from '../lib/utils';
 
 export interface AssetViewerProps {
   /**
