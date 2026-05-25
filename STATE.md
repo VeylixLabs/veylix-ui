@@ -15,11 +15,12 @@ The UI component library has been scaffolded using React and Tailwind CSS. The f
 ## 🧩 Implemented Components
 1. **`VeylixProvider` (`src/components/VeylixProvider.tsx`)**
    - [x] Basic React Context for Theme (Dark/Light) and Network state.
+   - [x] Integrated `wagmi`, `viem`, and `@tanstack/react-query` to support Web3 connectivity via the Base Network.
 2. **`ConnectWalletButton` (`src/components/ConnectWalletButton.tsx`)**
-   - [x] Presentational UI button with active/inactive states.
-   - [ ] Web3 Logic (Pending).
+   - [x] Fully integrated with Wagmi hooks (`useAccount`, `useConnect`).
+   - [x] Dynamically shows truncated wallet address when connected.
 3. **`NFTCard` (`src/components/NFTCard.tsx`)**
    - [x] Reusable card component tailored for displaying 3D synthetic assets.
 
 ## 🚦 Known Issues / Blockers
-- The `ConnectWalletButton` currently lacks a Web3 provider backend (like `wagmi` or `viem`). It acts only as a visual placeholder for now.
+- None. Wagmi integration is complete for the primary Base network.

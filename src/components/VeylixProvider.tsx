@@ -1,4 +1,8 @@
 import React, { createContext, useContext, ReactNode } from 'react';
+import { WagmiProvider, createConfig, http } from 'wagmi';
+import { base, baseSepolia } from 'wagmi/chains';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { injected } from 'wagmi/connectors';
 import '../style.css';
 
 interface VeylixContextState {
@@ -14,17 +18,35 @@ export interface VeylixProviderProps {
   network?: 'mainnet' | 'testnet';
 }
 
+const queryClient = new QueryClient();
+
 export const VeylixProvider: React.FC<VeylixProviderProps> = ({ 
   children, 
   theme = 'dark',
   network = 'mainnet' 
 }) => {
+
+  const wagmiConfig = createConfig({
+    chains: network === 'mainnet' ? [base] : [baseSepolia],
+    connectors: [
+      injected()
+    ],
+    transports: {
+      [base.id]: http(),
+      [baseSepolia.id]: http(),
+    },
+  });
+
   return (
-    <VeylixContext.Provider value={{ theme, network }}>
-      <div className={theme === 'dark' ? 'dark bg-gray-900 text-white' : 'bg-white text-black'}>
-        {children}
-      </div>
-    </VeylixContext.Provider>
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <VeylixContext.Provider value={{ theme, network }}>
+          <div className={theme === 'dark' ? 'dark bg-gray-900 text-white min-h-screen' : 'bg-white text-black min-h-screen'}>
+            {children}
+          </div>
+        </VeylixContext.Provider>
+      </QueryClientProvider>
+    </WagmiProvider>
   );
 };
 

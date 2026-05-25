@@ -1,7 +1,7 @@
 # VEYLIX Web3 UI - TODO
 
 ## 🎯 Short-Term Goals (Sprint 1)
-- [ ] **Web3 Integration:** 
+- [x] **Web3 Integration:** 
   - Install and configure `wagmi` and `viem` inside `VeylixProvider`.
   - Upgrade `ConnectWalletButton` to trigger real MetaMask/WalletConnect prompts.
 - [ ] **Component Expansion:** 
