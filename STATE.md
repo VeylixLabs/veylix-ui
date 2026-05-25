@@ -8,9 +8,10 @@ The UI component library has been scaffolded using React and Tailwind CSS. The f
 
 ## 🏗️ Architecture & Stack
 - **Framework:** React 18/19 (UI Primitives)
-- **Styling:** Tailwind CSS v3.4 + PostCSS
+- **Styling:** Tailwind CSS v3.4 + PostCSS (`tailwind-merge` & `clsx` enabled)
 - **Bundler:** tsup (outputs externalized React components)
 - **Language:** TypeScript 5.x (Strict Mode)
+- **Design System:** Glassmorphism, Dark Monochrome, Glow Effects (Synchronized with Veylix DApp)
 
 ## 🧩 Implemented Components
 1. **`VeylixProvider` (`src/components/VeylixProvider.tsx`)**

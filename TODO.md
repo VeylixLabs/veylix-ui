@@ -7,7 +7,7 @@
 - [ ] **Component Expansion:** 
   - Build `Modal` component (for transaction status / wallet selection).
   - Build `Badge` component (for network / status indicators).
-- [ ] **Styling Overrides:** 
+- [x] **Styling Overrides:** 
   - Ensure Tailwind classes can be properly overridden by consumers using `tailwind-merge` and `clsx`.
 
 ## 🚀 Mid-Term Goals (Sprint 2)
