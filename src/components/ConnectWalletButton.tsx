@@ -7,9 +7,9 @@ export interface ConnectWalletButtonProps {
   className?: string;
 }
 
-export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({ 
-  label = "Connect Wallet",
-  className
+export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
+  label = 'Select wallet',
+  className,
 }) => {
   const { isConnected, address } = useAccount();
   const { connectors, connect } = useConnect();
@@ -18,34 +18,57 @@ export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
   const handleConnect = () => {
     if (isConnected) {
       disconnect();
-    } else {
-      if (connectors.length > 0) {
-        connect({ connector: connectors[0] });
-      }
+      return;
+    }
+
+    if (connectors.length > 0) {
+      connect({ connector: connectors[0] });
     }
   };
 
   const displayAddress = address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '';
 
   return (
-    <button 
+    <button
+      type="button"
       onClick={handleConnect}
+      title={isConnected ? 'Disconnect wallet' : label}
       className={cn(
-        "relative px-6 py-2 rounded-lg font-display uppercase tracking-widest text-sm font-bold text-white transition-all duration-300",
-        "bg-[rgba(10,10,10,0.7)] border border-[rgba(255,255,255,0.2)] backdrop-blur-xs",
-        "hover:border-primaryColorLight hover:shadow-glow-purple",
-        isConnected ? "border-green-500/50 shadow-glow-green" : "",
-        className
+        isConnected
+          ? [
+              'inline-flex min-h-10 items-center gap-3 rounded-lg',
+              'border border-[var(--border-active)] bg-white/[0.035] px-3',
+              'font-tech text-[11px] text-white/85 transition-all',
+              'hover:bg-white/[0.055] hover:shadow-[0_0_18px_rgba(170,98,245,0.12)]',
+            ]
+          : 'vey-wallet-button px-5 text-[10px]',
+        className,
       )}
     >
-      {/* Subtle glowing accent dot */}
-      <span className={cn(
-        "absolute left-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full",
-        isConnected ? "bg-green-400 animate-pulse" : "bg-primaryColor"
-      )} />
-      <span className="pl-4">
+      <span
+        className={cn(
+          'relative flex h-2.5 w-2.5 shrink-0 rounded-full',
+          isConnected
+            ? 'bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,0.8)]'
+            : 'bg-[var(--accent)]',
+        )}
+        data-testid="wallet-status-dot"
+        aria-hidden="true"
+      >
+        {isConnected && (
+          <span className="absolute inset-0 rounded-full bg-emerald-300/40 animate-ping" />
+        )}
+      </span>
+
+      <span className="relative z-10">
         {isConnected ? displayAddress : label}
       </span>
+
+      {!isConnected && (
+        <span aria-hidden="true" className="relative z-10 text-base leading-none">
+          -&gt;
+        </span>
+      )}
     </button>
   );
 };

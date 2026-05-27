@@ -9,6 +9,8 @@
 # production
 /dist
 /build
+storybook-static
+storybook*.log
 /.next
 /out
 

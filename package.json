@@ -7,6 +7,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/style.css",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -16,6 +18,8 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^10.4.1",
+    "@storybook/react-vite": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -24,9 +28,11 @@
     "autoprefixer": "^10.4.19",
     "jsdom": "^29.1.1",
     "postcss": "^8.4.38",
+    "storybook": "^10.4.1",
     "tailwindcss": "^3.4.4",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
+    "vite": "^8.0.14",
     "vitest": "^4.1.7"
   },
   "dependencies": {

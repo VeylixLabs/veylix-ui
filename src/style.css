@@ -1,3 +1,154 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-primary: #040206;
+  --bg-secondary: #07030c;
+  --bg-tertiary: #121212;
+  --bg-card: #0c0812;
+  --bg-hover: #170e24;
+  --accent: #AA62F5;
+  --accent-light: #d8b4fe;
+  --accent-muted: #8c73ab;
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d4;
+  --text-muted: #737373;
+  --border: rgba(216, 180, 254, 0.12);
+  --border-accent: rgba(170, 98, 245, 0.34);
+  --border-active: rgba(170, 98, 245, 0.55);
+  --font-display: var(--font-iceberg), "Inter", system-ui, sans-serif;
+  --font-tech: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius-sm: 12px;
+  --radius-pill: 9999px;
+}
+
+@keyframes veylix-shimmer-bar {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .font-tech {
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .card-veylix {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(170, 98, 245, 0.055), rgba(255, 255, 255, 0.01) 38%, rgba(6, 3, 12, 0.82)),
+      rgba(7, 5, 12, 0.86);
+    border: 1px solid rgba(216, 180, 254, 0.12);
+    backdrop-filter: blur(18px);
+    border-radius: var(--radius-sm);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 18px 48px rgba(0, 0, 0, 0.42);
+    transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  .card-veylix::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(170, 98, 245, 0.16) 1px, transparent 1px),
+      linear-gradient(rgba(170, 98, 245, 0.12) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 68%);
+    opacity: 0.28;
+  }
+
+  .card-veylix::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      radial-gradient(circle at 18% 0%, rgba(216, 180, 254, 0.1), transparent 30%),
+      radial-gradient(circle at 82% 100%, rgba(170, 98, 245, 0.1), transparent 34%);
+  }
+
+  .card-veylix:hover {
+    border-color: rgba(170, 98, 245, 0.34);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 20px 52px rgba(0, 0, 0, 0.46),
+      0 0 28px rgba(170, 98, 245, 0.1);
+  }
+
+  .vey-chip {
+    border: 1px solid rgba(170, 98, 245, 0.28);
+    border-radius: 6px;
+    background: rgba(170, 98, 245, 0.075);
+    color: var(--accent-light);
+    font-family: var(--font-tech);
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .vey-wallet-button {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #dcb8ff 0%, #ffffff 48%, #a95cff 100%);
+    color: #0a0510;
+    font-family: var(--font-tech);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    box-shadow: 0 10px 26px rgba(170, 98, 245, 0.24);
+    transition: box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
+  }
+
+  .vey-wallet-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.52), transparent);
+    opacity: 0;
+    transform: translateX(-55%);
+    transition: opacity 220ms ease, transform 700ms ease;
+  }
+
+  .vey-wallet-button:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 14px 34px rgba(170, 98, 245, 0.34);
+    transform: translateY(-1px);
+  }
+
+  .vey-wallet-button:hover::before {
+    opacity: 1;
+    transform: translateX(55%);
+  }
+}
